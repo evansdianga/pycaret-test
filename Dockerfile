@@ -2,8 +2,11 @@ FROM python
 
 WORKDIR /app
 
-# COPY requirements.txt requirements.txt
-RUN pip3 install pycaret
+RUN apt-get update && apt-get install -y libgomp1
+COPY requirements.txt requirements.txt
+
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
+# RUN pip3 install pycaret
 
 COPY . .
 
